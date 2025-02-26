@@ -42,27 +42,32 @@ lumagen-cli --log-level DEBUG --exit-wait-timer 5
 You can also use **pylumagen** as a Python module:
 
 ```python
+#!/usr/bin/env python3
+
+import asyncio
+import logging
 from lumagen.device_manager import DeviceManager
 
 async def main():
     device = DeviceManager(connection_type="ip")
-    await device.open(host="192.168.1.100", port=23)
-    await device.send_command("ZQI00")
-    await device.close()
-```
+    await device.open(host="192.168.15.71", port=4999)
+    await asyncio.sleep(1)
 
-## Configuration
-Ensure you have the correct configuration settings for your Lumagen device. Edit the `config.yaml` file to match your setup:
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format="%(asctime)s - %(levelname)s - %(message)s",
+    )
+    logger = logging.getLogger(__name__)
 
-```yaml
-lumagen:
-  host: "192.168.1.100"
-  port: 23
-  serial_port: "/dev/ttyUSB0"
+    await device.send_command("ZQS01")
+    await asyncio.sleep(1)
+
+if __name__ == "__main__":
+    asyncio.run(main())
 ```
 
 ## Home Assistant Integration
-**pylumagen** is designed to support integration with Home Assistant. Ensure you install this package before using the Lumagen Home Assistant component.
+**pylumagen** is designed to support the Lumagen Home Assistant component.
 
 ## Contributing
 1. Fork the repository.
