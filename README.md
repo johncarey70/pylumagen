@@ -36,6 +36,7 @@ lumagen-cli --help
 Example usage:
 ```sh
 lumagen-cli --log-level DEBUG --exit-wait-timer 5
+>>> ZQS01 `(Send any valid API command)`
 ```
 
 ### Python API
@@ -67,7 +68,7 @@ if __name__ == "__main__":
 ```
 
 ## Home Assistant Integration
-**pylumagen** is designed to support the Lumagen Home Assistant component.
+**pylumagen** was mainly designed to support the Lumagen Home Assistant component.
 
 ## Contributing
 1. Fork the repository.
