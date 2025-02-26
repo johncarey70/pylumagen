@@ -27,41 +27,45 @@ pip install .
 
 ## Usage
 ### Lumagen CLI
-After installation, you can use the `lumagen-cli` command-line tool:
+After installation, you can use the `lumagen-cli` command-line tool.
 
-```sh
-lumagen-cli --help
-```
+#### **Step 1: Run the CLI**
+Open a terminal and enter:
 
-Example usage:
 ```sh
 lumagen-cli --log-level DEBUG --exit-wait-timer 5
->>> ZQS01 `(Send any valid API command)`
 ```
 
-### Python API
-You can also use **pylumagen** as a Python module:
+#### **Step 2: Enter a Lumagen Command**
+Once the prompt appears, **type the following command exactly as shown**:
+
+```sh
+ZQS01
+```
+
+**Note:** This sends the **ZQS01** command to the Lumagen device.
+**Tip** *(Replace `ZQS01` with another valid Lumagen API command if needed.)*
+
+
+---
+
+### Python API Usage
+You can also send commands directly using the Python API:
 
 ```python
 #!/usr/bin/env python3
 
 import asyncio
-import logging
 from lumagen.device_manager import DeviceManager
 
 async def main():
     device = DeviceManager(connection_type="ip")
     await device.open(host="192.168.15.71", port=4999)
-    await asyncio.sleep(1)
 
-    logging.basicConfig(
-        level=logging.DEBUG,
-        format="%(asctime)s - %(levelname)s - %(message)s",
-    )
-    logger = logging.getLogger(__name__)
+    # Send a specific command
+    await device.send_command("ZQS01")  # Change "ZQS01" if needed
 
-    await device.send_command("ZQS01")
-    await asyncio.sleep(1)
+    await device.close()
 
 if __name__ == "__main__":
     asyncio.run(main())
@@ -84,5 +88,3 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 For any questions or issues, please open an issue on GitHub or contact the maintainer.
 
 ---
-Happy coding! 🚀
-
