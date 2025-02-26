@@ -49,6 +49,13 @@ coverage:
 	@echo "Running coverage tests..."
 	@coverage run -m pytest tests/ && coverage report -m
 
+# Publish package to PyPI
+publish: build
+	$(PYTHON) -m twine upload dist/*
+
+publish-test: build
+	$(PYTHON) -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+
 # Help
 help:
 	@echo "Available targets:"

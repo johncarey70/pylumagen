@@ -35,9 +35,7 @@ lumagen-cli --help
 
 Example usage:
 ```sh
-lumagen-cli power_on
-lumagen-cli set_labels
-lumagen-cli show_state
+lumagen-cli --log-level DEBUG --exit-wait-timer 5
 ```
 
 ### Python API
